@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const poeti_file = require('../people.json');
+var createError = require('http-errors')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,6 +16,13 @@ router.get('/poeta/:email', function(req, res, next) {
     console.log(poeta_trovato);
     res.render("poeta", {poeta: poeta_trovato});
     //res.render('index', { title: 'Express' });
+
+    if (typeof poeta_trovato === "undefined") {
+        return next(createError(422, 'OPS! Non abbiamo trovato uno scrittore con quel nome :('));
+    } else {
+        let quotes = [];
+        i = 0;
+    }
 });
 
 module.exports = router;

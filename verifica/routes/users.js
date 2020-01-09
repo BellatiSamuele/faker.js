@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 var faker = require('faker');
 const fs = require('fs');
+var json_people = require('../people.json');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send(json_people);
 });
 
 router.get('/generate', function (req, res, next) {
